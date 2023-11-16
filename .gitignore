@@ -1,0 +1,4 @@
+node_modules
+# package.json 있으면 node_modules 자동관리 가능하므로 github에 올리지 않음
+
+package-lock.json
