@@ -33,11 +33,30 @@ const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 
 // socket: 연결된 브라우저
-function handleConnection(socket) {
-  console.log(socket);
-}
+// function handleConnection(socket) {
+//   console.log(socket);
+// }
 
-wss.on("connection", handleConnection);
+// wss.on("connection", handleConnection);
+
+// wss : 전체 서버
+// socket : 특정 socket
+// 서버에 있는 메서드가 아닌, socket에 있는 메서드는 socket으로 직접적인 연결을 제공해줌
+wss.on("connection", (socket) => {
+  console.log("Connected to Browser");
+
+  // browser 연결이 끊기면, server에 event 발생시킴
+  socket.on("close", () => {
+    console.log("Disconnected from Browser");
+  });
+
+  socket.on("message", (message) => {
+    console.log(message.toString("utf8"));
+  });
+
+  // connection이 생기면, socket으로 즉시 메세지를 보냄 (BE -> FE)
+  socket.send("hello!!!");
+});
 
 server.listen(3000, handleListen);
 
