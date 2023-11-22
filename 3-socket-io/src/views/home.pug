@@ -11,6 +11,14 @@ html(lang="en")
       h1 Noom 
     main
       h2 Socket.io
-      button call
+      div#welcome
+        form
+            input(placeholder="room name", required, type="text")
+            button Enter Room
+      div#room
+        ul 
+        form
+            input(placeholder="message", required, type="text")
+            button Send
   script(src="/socket.io/socket.io.js")
   script(src="/public/js/app.js")
