@@ -45,7 +45,7 @@ wsServer.on("connection", (socket) => {
     done();
 
     // "welcome" 이벤트를 roomName에 있는 모든 사람에게 emit
-    socket.to(roomName), emit("welcome");
+    socket.to(roomName).emit("welcome");
 
     // setTimeout(() => {
     // BE가 실행을 시켜서(함수 호출), FE에서 해당 함수가 실행됨
