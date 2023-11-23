@@ -30,6 +30,26 @@ const handleListen = () => {
 const httpServer = http.createServer(app);
 const wsServer = SocketIO(httpServer);
 
+function publicRoom() {
+  // wsServer.sockets.adapter 로부터 sids, rooms를 가져옴
+  //-- sids : 개인방
+  //-- rooms : 개인방,공개방 다 있음
+  const {
+    sockets: {
+      adapter: { sids, rooms },
+    },
+  } = wsServer;
+  // const sids = wsServer.sockets.adapter.sids;
+  // const rooms = wsServer.sockets.adapter.rooms;
+
+  const publicRooms = [];
+  rooms.forEach((_, key) => {
+    if (sids.get(key) === undefined) {
+      publicRooms.push(key);
+    }
+  });
+}
+
 // FE와 연결
 wsServer.on("connection", (socket) => {
   socket["nickname"] = "Anonymous";
