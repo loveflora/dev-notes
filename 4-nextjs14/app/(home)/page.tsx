@@ -5,7 +5,7 @@
 
 ////////////////////////
 
-//] 1. server component에서 fetch를 사용할 경우
+//] 1. server component에서 fetch를 사용할 경우 (BE에서 data fetch)
 //-- 1) useState, useEffect 사용 안해도 되고,
 //-- 2) metadata 사용 O, use client 사용 X
 
@@ -25,6 +25,7 @@ export const metadata = {
 const URL = "https://nomad-movies.nomadcoders.workers.dev/movies";
 
 async function getMovies() {
+  await new Promise((resolve) => setTimeout(resolve, 10000));
   const response = await fetch(URL);
   const json = await response.json();
   return json;
@@ -32,9 +33,13 @@ async function getMovies() {
 
 // getMovies가 await 사용했으므로 'async' 꼭 써줘야해요 !
 export default async function Page() {
+  // response 결과값
   const movies = await getMovies();
   return <div> {JSON.stringify(movies)} </div>;
 }
+
+// const html = await homePage()
+// isLoading ? <Loading/> : html
 
 //] 2. server component에서 fetch를 사용하지 않을 경우
 
