@@ -1,5 +1,7 @@
 // root segment ( Home / )
 
+import Link from "next/link";
+
 // route group
 // (괄호) 표시는 url에 영향 주지 않음.
 
@@ -35,7 +37,16 @@ async function getMovies() {
 export default async function Page() {
   // response 결과값
   const movies = await getMovies();
-  return <div> {JSON.stringify(movies)} </div>;
+  // return <div> {JSON.stringify(movies)} </div>;
+  return (
+    <div>
+      {movies.map((movie) => (
+        <li key={movies.id}>
+          <Link href={`/movies/${movies.id}`}>{movie.title}</Link>
+        </li>
+      ))}
+    </div>
+  );
 }
 
 // const html = await homePage()
