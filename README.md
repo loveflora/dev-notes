@@ -14,6 +14,13 @@ Zoom Clone using NodeJS, WebRTC and WebSockets
 
 </br>
 
-## 3 ~ 4. Next.js
+## 3. Next.js 소개
 
 React로 만드는 서버사이드 렌더링 프레인 워크인 Next.js와 관련한 코드를 기록합니다.
+
+## 4. Next Movies
+
+Next.js 프레임워크를 활용한 영화 정보 웹사이트입니다.
+vercel를 활용하여 배포했습니다.
+
+[Next Movies](https://nextjs-movies-loveflora.vercel.app/)
