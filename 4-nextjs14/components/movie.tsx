@@ -20,7 +20,11 @@ export default function Movie({ title, id, poster_path }: IMovieProps) {
   return (
     <div className={styles.movie}>
       <img src={poster_path} alt={title} onClick={onClick} />
-      <Link href={`/movies/${id}`}>{title}</Link>
+      {/* prefetch : 사용자가 클릭하기 전부터 미리 fetch */}
+      {/* => Home에서 scroll 내리면, 해당 링크 클릭하기 전부터, 요청 보냄 */}
+      <Link prefetch href={`/movies/${id}`}>
+        {title}
+      </Link>
     </div>
   );
 }
