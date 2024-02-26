@@ -59,7 +59,7 @@ export default async function MovieDetail({
     //   4. Suspense가 component를 await 해줌
     //   5. component가 준비되면 fallback, UI를 사용자에게 전달
     <div>
-      <h3>Movie Detail Page</h3>
+      {/* <h3>Movie Detail Page</h3> */}
 
       {/* === ReactJS의 component인 Suspense 사용 ! === */}
       {/* 1) Promise.all과 달리, 동시에 시작하지만, 서로를 기다리진 않음 */}

@@ -23,7 +23,11 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Navigation />
-        {children} &copy; RootLayout
+        {children}
+        <br />
+        <div style={{ padding: "100px", color: "Gray", textAlign: "center" }}>
+          &copy; RootLayout
+        </div>
       </body>
     </html>
   );
