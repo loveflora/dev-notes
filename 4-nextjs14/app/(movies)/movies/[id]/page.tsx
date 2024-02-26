@@ -89,12 +89,10 @@ export default async function MovieDetail({ params: { id } }: IParams) {
       {/* 준비될 때까지 fallback 보여줌 (로딩), 필수는 아님 */}
       <Suspense fallback={<h1>Loading movie info</h1>}>
         {/* Error 방지용으로 아래 주석 작성 */}
-        {/* @ts-expect-error Async Server Component */}
         <MovieInfo id={id} />
         {/* --- MovieInfo는 async, await ---*/}
       </Suspense>
       <Suspense fallback={<h1>Loading movie videos</h1>}>
-        {/* @ts-expect-error Async Server Component */}
         <MovieVideos id={id} />
       </Suspense>
     </div>
