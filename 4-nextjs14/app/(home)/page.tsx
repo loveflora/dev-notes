@@ -1,6 +1,9 @@
 // root segment ( Home / )
 
 import Link from "next/link";
+import Movie from "../../components/movie";
+
+import styles from "../../styles/home.module.css";
 
 // route group
 // (괄호) 표시는 url에 영향 주지 않음.
@@ -39,11 +42,14 @@ export default async function Page() {
   const movies = await getMovies();
   // return <div> {JSON.stringify(movies)} </div>;
   return (
-    <div>
+    <div className={styles.container}>
       {movies.map((movie) => (
-        <li key={movies.id}>
-          <Link href={`/movies/${movie.id}`}>{movie.title}</Link>
-        </li>
+        <Movie
+          key={movie.id}
+          id={movie.id}
+          poster_path={movie.poster_path}
+          title={movie.title}
+        />
       ))}
     </div>
   );

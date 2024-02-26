@@ -18,12 +18,17 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
+import styles from "../styles/navigation.module.css";
+// JS 파일인 것처럼
+// styles는 모듈 파일의 모든 class를 지닌 javascript object인 것처럼
+
 export default function Navigation() {
   const path = usePathname();
   const [count, setCount] = useState(0);
 
   return (
-    <nav>
+    <nav className={styles.nav}>
+      {/* class="navigation_nav___kX_6" */}
       <ul>
         <li>
           <Link href="/">Home</Link> {path === "/" ? "🔥" : ""}
@@ -32,7 +37,7 @@ export default function Navigation() {
           <Link href="/about-us">About us</Link> {path === "/" ? "" : "🔥"}
         </li>
       </ul>
-      <button onClick={() => setCount((c) => c + 1)}>{count}</button>
+      {/* <button onClick={() => setCount((c) => c + 1)}>{count}</button> */}
     </nav>
   );
 }
