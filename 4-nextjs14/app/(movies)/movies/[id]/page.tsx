@@ -1,8 +1,29 @@
 // import { API_URL } from "../../../(home)/page";
 
 import { Suspense } from "react";
-import MovieInfo from "../../../../components/movie-info";
+import MovieInfo, { getMovie } from "../../../../components/movie-info";
 import MovieVideos from "../../../../components/movie-videos";
+
+// id 라는 parameter는 page component에 제공되는 객체
+// page component, generateMetadata 함수 두 곳에 전달됨
+// getMovie 함수도 두번 호출됨
+interface IParams {
+  params: { id: string };
+}
+
+//=== Metadata
+// 해당 페이지는 id 값에 따라, 제목이 달라지기 때문에 (동적)
+// fetching 할 수 있게 하는 함수 사용 (제목을 가져올 수 있음)
+// metadata 불러오기 위해 자동으로 호출 (dynamic)
+export async function generateMetadata({ params: { id } }: IParams) {
+  const movie = await getMovie(id);
+  // metadata에서 처음 fetch 했을 때는 fetch가 한번 실행되지만,
+  // 영화 정보 얻기 위해 두번째로 fetch 할 때는 캐시된 응답을 받음
+
+  return {
+    title: movie.title,
+  };
+}
 
 //_ movie-info.tsx
 // async function getMovie(id: string) {
@@ -20,11 +41,7 @@ import MovieVideos from "../../../../components/movie-videos";
 //   return response.json();
 // }
 
-export default async function MovieDetail({
-  params: { id },
-}: {
-  params: { id: string };
-}) {
+export default async function MovieDetail({ params: { id } }: IParams) {
   // console.log("==============");
   // console.log("start fetching");
 

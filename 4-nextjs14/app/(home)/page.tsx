@@ -24,6 +24,7 @@ import styles from "../../styles/home.module.css";
 // why ? fetch 하는건 BE라서
 
 export const metadata = {
+  // static
   title: "Home ",
 };
 
