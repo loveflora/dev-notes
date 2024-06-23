@@ -26,3 +26,7 @@ Next.js 프레임워크를 활용한 영화 정보 웹사이트입니다.
 vercel를 활용하여 배포했습니다.
 
 [Next Movies](https://nextjs-movies-loveflora.vercel.app/)
+
+## 5. 쏙쏙 들어오는 함수형 코딩
+
+에릭 노먼드 저서의 쏙쏙 들어오는 함수형 코딩 책 스터디
