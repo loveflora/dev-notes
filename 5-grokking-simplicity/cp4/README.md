@@ -31,17 +31,20 @@
 - 전역변수를 바꾸는 것 : `암묵적 출력`
 - 콘솔에 찍는 것 : `암묵적 출력`
 
-### 암묵적 코드를 없앤 코드
+<br/>
+
+## 3. 암묵적 코드를 없앤 코드
 
 > 원래 코드
 
 ```javascript
 function calc_cart_total() {
-  shopping_cart_total = 0;
+  shopping_cart_total = 0; // 암묵적 출력
   // 계산에 해당되는 코드 시작
   for (let i = 0; i < shopping_cart.length; i++) {
-    let item = shopping_cart[i];
-    shopping_cart_total += item.price;
+    // shopping_cart : 암묵적 입력
+    let item = shopping_cart[i]; // shopping_cart : 암묵적 입력
+    shopping_cart_total += item.price; // 암묵적 출력
   }
   // 계산에 해당되는 코드 끝
   set_cart_total_dom();
@@ -50,13 +53,16 @@ function calc_cart_total() {
 }
 ```
 
+- `출력` : 전역변숫값을 바꿈
+- `입력` : 전역변수값을 읽음
+
 <br/>
 
 > 암묵적 출력을 없앤 코드
 
 ```javascript
 function calc_cart_total() {
-  shopping_cart_total = calc_total(); // 계산한 값 전역변수에 할당
+  shopping_cart_total = calc_total(); // 리턴한 계산값을 전역변수에 할당
   set_cart_total_dom();
   update_shipping_icons();
   update_tax_dom();
@@ -64,10 +70,117 @@ function calc_cart_total() {
 
 function calc_total(cart) {
   let total = 0; // 지역변수
-  for(let i = 0; i < cart.length; i++) {
+  for (let i = 0; i < cart.length; i++) {
     let item = cart[i];
-    total += item.price;
+    total += item.price; // 지역변수 사용
   }
-  retrun total; // 지역변수 리턴
+  return total; // 지역변수 리턴
 }
 ```
+
+<br/>
+
+> 암묵적 입력을 없앤 코드
+
+```javascript
+function calc_cart_total() {
+  shopping_cart_total = calc_total(shopping_cart);
+  // shopping_cart : 인자로 전달
+
+  set_cart_total_dom();
+  update_shipping_icons();
+  update_tax_dom();
+}
+
+function calc_total(cart) {
+  // cart: 전역변수 대신 인자를 만들어 사용
+  var total = 0;
+  for (var i = 0; i < shopping_cart.length; i++) {
+    var item = shopping_cart[i];
+    total += item.price;
+  }
+  return total;
+}
+```
+
+<br/>
+
+## 4. 액션에서 또 다른 계산 뻬내기
+
+> 원래 코드
+
+```javascript
+function add_item__to_cart(name, price) {
+  shopping_cart.push({
+    name,
+    price,
+  });
+
+  calc_cart_total();
+}
+```
+
+<br/>
+
+> 함수 추출하기 (계산 빼내기)
+
+```javascript
+function add_item_to_cart(name, price) {
+  add_item(name, price);
+  calc_cart_total();
+}
+
+function add_item(name, price) {
+  shopping_cart.push({
+    // push 함수로 배열을 바꾸고 있음 (암묵적 출력)
+    // 전역변수인 shopping_cart 읽고 있음 (암묵적 입력)
+    name,
+    price,
+  });
+}
+```
+
+<br/>
+
+> 암묵적 입력을 없앤 코드
+
+```javascript
+function add_item_to_cart(name, price) {
+  add_item(shopping_cart, name, price);
+  // shopping_cart : 전역변수를 인자로 넘김
+  calc_cart_total();
+}
+
+function add_item(cart, name, price) {
+  // cart : 인자를 추가
+  cart.push({
+    // 전역변수 대신 인자를 사용
+    name,
+    price,
+  });
+}
+```
+
+<br/>
+
+> 암묵적 출력을 없앤 코드
+
+```javascript
+function add_item_to_cart(name, price) {
+  shopping_cart = add_item(shopping_cart, name, price); // shopping_cart : 원래 함수에서 리턴값을 받아, 전역변수에 할당
+  calc_cart_total();
+}
+
+function add_item(cart, name, price) {
+  let new_cart = cart.slice(); // 복사본을 만들어 지역변수에 할당
+  new_cart.push({
+    // 복사본을 변경
+    name,
+    price,
+  });
+  return new_cart;
+  // 복사본을 리턴
+}
+```
+
+<br/>
