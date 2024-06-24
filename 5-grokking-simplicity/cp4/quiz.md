@@ -66,4 +66,4 @@ function gets_free_shipping(price, total) {
 
 > 전체 코드
 
-`quiz.ts` 참고
+`quiz.js` 참고
