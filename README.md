@@ -8,6 +8,8 @@
 
 ## 1. WebSockets
 
+Zoom Clone using NodeJS, WebRTC and WebSockets
+
 ## 2. socket.io
 
 Zoom Clone using NodeJS, WebRTC and WebSockets
@@ -25,6 +27,10 @@ vercel를 활용하여 배포했습니다.
 
 [Next Movies](https://nextjs-movies-loveflora.vercel.app/)
 
-## 5. Next.js
+## 5. 쏙쏙 들어오는 함수형 코딩
+
+에릭 노먼드 저서의 쏙쏙 들어오는 함수형 코딩 책 스터디
+
+## 6. Next.js
 
 생활코딩님의 영상을 보며 Next.js 개념을 다졌습니다.
