@@ -24,3 +24,7 @@ Next.js 프레임워크를 활용한 영화 정보 웹사이트입니다.
 vercel를 활용하여 배포했습니다.
 
 [Next Movies](https://nextjs-movies-loveflora.vercel.app/)
+
+## 5. Next.js
+
+생활코딩님의 영상을 보며 Next.js 개념을 다졌습니다.
