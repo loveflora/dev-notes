@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
         {/* page 내용이 들어감 */}
         <ul>
           <li>
-            <Link href="/create">Create</Link>
+            <Link href="/about">About</Link>
           </li>
           <li>
             <input type="button" value="delete" />
