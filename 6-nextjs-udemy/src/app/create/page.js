@@ -1,3 +1,3 @@
-export default function Create() {
+export default function CreatePage() {
   return <>page.js</>;
 }
