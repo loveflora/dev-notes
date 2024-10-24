@@ -1,3 +1,6 @@
+import fs from "node:fs";
+// File System : Node가 제공해주는 API
+
 import sql from "better-sqlite3";
 import slugify from "slugify";
 import xss from "xss";
@@ -44,4 +47,20 @@ export function saveMeal(meal) {
   //     __html: meal.instructions, // XSS (크로스 사이트 스크립팅 공격)에 취약 -> 'xss' 패키지 설치 (npm i xss)
   //   }}
   // ></p>
+
+  //_ 3) 업로드된 이미지 파일 저장
+  // DB에 파일 저장 X
+  // -> 업로드된 파일을 public 폴더에 저장하려 함
+  // -> public > images 폴더에 저장된 이미지들은 어디서든 접근용이
+  const extension = meal.image.split(".").pop();
+  // meal.image --> action.js 파일 참고 (image가 key임)
+  // .split(".").pop() --> 마지막 요소(확장자)만 받음
+  const fileName = `${meal.slug}.${extension}`;
+
+  //_ 4) public 폴더에 파일을 write (import fs)
+  // 어떤 파일에 데이터 쓸 수 있도록 해주는 stream 생성
+  // `경로/파일명`
+  fs.createWriteStream(`public/images/${fileName}`);
+
+  stream.write();
 }
