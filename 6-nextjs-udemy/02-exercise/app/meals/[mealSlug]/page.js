@@ -16,12 +16,9 @@ export default function MealDetailsPage({ params }) {
   if (!meal) {
     notFound();
   }
-
-  // notFound 
-  : 아래 코드가 실행되는 것을 막아줌
-  if (!meal) {
-    notFound();
-  }
+  //* notFound 함수
+  // 컴포넌트가 시작되는 것을 멈추고, 제일 가까운 not-found나 오류 화면 보여줌
+  // -> meals > not-found.js 실행
 
   // 정규식 이용해서 줄바꿈 무시된 현상 해결
   meal.instructions = meal.instructions.replace(/\n/g, "<br />");
@@ -44,7 +41,7 @@ export default function MealDetailsPage({ params }) {
         <p
           className={classes.instructions}
           dangerouslySetInnerHTML={{
-            __html: meal.instructions,
+            __html: meal.instructions, // XSS (크로스 사이트 스크립팅 공격)에 취약 -> 'xss' 패키지 설치 (npm i xss)
           }}
         ></p>
       </main>
