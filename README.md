@@ -34,3 +34,7 @@ vercel를 활용하여 배포했습니다.
 ## 6. Next.js
 
 유데미 Next.js 강의를 수강하며 보다 자세하고 심화된 내용에 대해 학습했습니다.
+
+## 7.Typescript
+
+Typescript 스터디에 참석하여 React와 Typescript를 활용하여 TicTacToe 게임을 만들었습니다.
