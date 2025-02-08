@@ -9,11 +9,12 @@ import { ThemedView } from "@/components/ThemedView";
 
 export default function HomeScreen() {
   return (
-    <View>
+    <View style={styles.container}>
       <View>
-        <Text>???</Text>
+        <Text style={styles.dummyText}>Another Text</Text>
       </View>
-      <Text>Hello world!</Text>
+      <Text style={styles.dummyText}>Hello world!</Text>
+      <Button title="Tap me!" />
     </View>
 
     // <ParallaxScrollView
@@ -30,21 +31,19 @@ export default function HomeScreen() {
   );
 }
 
+// StyleSheet: 자동완성
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: "row",
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    justifyContent: "center",
     alignItems: "center",
     gap: 8,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: "absolute",
+  dummyText: {
+    margin: 16,
+    borderWidth: 1,
+    borderColor: "red",
+    padding: 16,
   },
 });
