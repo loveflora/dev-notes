@@ -6,15 +6,19 @@ import { HelloWave } from "@/components/HelloWave";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
+import { TextInput } from "react-native-gesture-handler";
 
 export default function HomeScreen() {
   return (
-    <View style={styles.container}>
+    <View style={styles.appContainer}>
       <View>
-        <Text style={styles.dummyText}>Another Text</Text>
+        <TextInput placeholder="Your course goal!" />
+        <Button title="Add Goal" />
       </View>
-      <Text style={styles.dummyText}>Hello world!</Text>
-      <Button title="Tap me!" />
+      <View>
+        <Text>Life of Goal...</Text>
+      </View>
+      {/* <Button title="Tap me!" /> */}
     </View>
 
     // <ParallaxScrollView
@@ -33,17 +37,7 @@ export default function HomeScreen() {
 
 // StyleSheet: 자동완성
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 8,
-  },
-  dummyText: {
-    margin: 16,
-    borderWidth: 1,
-    borderColor: "red",
-    padding: 16,
+  appContainer: {
+    padding: 50,
   },
 });
