@@ -1,44 +1,40 @@
 import {
-  Image,
   StyleSheet,
-  Platform,
   View,
-  Text,
   Button,
-  ScrollView,
+  // ScrollView,
+  // Text,
   FlatList,
 } from "react-native";
 //-- react-native
 // DOM 요소를 가지고 있지 않아서, HTML 요소 지원하지 않음
 
-import { HelloWave } from "@/components/HelloWave";
-import ParallaxScrollView from "@/components/ParallaxScrollView";
-import { ThemedText } from "@/components/ThemedText";
-import { ThemedView } from "@/components/ThemedView";
-import { TextInput } from "react-native-gesture-handler";
+// import { HelloWave } from "@/components/HelloWave";
+// import ParallaxScrollView from "@/components/ParallaxScrollView";
+// import { ThemedText } from "@/components/ThemedText";
+// import { ThemedView } from "@/components/ThemedView";
+// import { TextInput } from "react-native-gesture-handler";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { useState } from "react";
+import GoalItem from "@/components/GoalItem";
+import GoalInput from "@/components/GoalInput";
 
 export default function HomeScreen() {
   const colorScheme = useColorScheme();
   const dynamicStyles = StyleSheet.create({
-    description: {
+    textColor: {
       fontSize: 16,
       color: colorScheme === "dark" ? "#eee" : "#000",
     },
   });
 
-  const [enteredGoalText, setEnteredGoalText] = useState("");
   const [courseGoals, setCourseGoals] = useState<
     { text: string; id: string }[]
   >([]);
 
-  function goalInputHandler(eneteredText: string) {
-    setEnteredGoalText(eneteredText);
-  }
-
-  function addGoalHandler() {
+  //_ 추가
+  function addGoalHandler(enteredGoalText: string) {
     //* FlatList 일 경우
     setCourseGoals((currentCourseGoals) => [
       ...currentCourseGoals,
@@ -52,16 +48,14 @@ export default function HomeScreen() {
     // ]);
   }
 
+  //_ 삭제
+  function deleteGoalHandler() {
+    console.log("delete");
+  }
+
   return (
     <View style={styles.appContainer}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={[styles.textInput, dynamicStyles.description]}
-          placeholder="Your course goal!"
-          onChangeText={goalInputHandler}
-        />
-        <Button title="Add Goal" onPress={addGoalHandler} />
-      </View>
+      <GoalInput onAddGoal={addGoalHandler} dynamicStyles={dynamicStyles} />
 
       <View style={styles.goalsContainer}>
         <FlatList
@@ -69,12 +63,14 @@ export default function HomeScreen() {
           renderItem={(itemData) => {
             // renderItem: 각 항목을 어떻게 렌더링할지 정의
             return (
-              <View style={styles.goalItem}>
-                <Text style={styles.goalText}>{itemData.item.text}</Text>
-              </View>
+              <GoalItem
+                text={itemData.item.text}
+                onDeleteItem={deleteGoalHandler}
+              />
             );
           }}
           keyExtractor={(item, index) => {
+            // 고유한 키를 어떻게 얻을지 정의
             return item.id;
           }}
         />
@@ -114,33 +110,9 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 16,
   },
-  inputContainer: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    borderBottomColor: "#ccc",
-    borderBottomWidth: 1,
-    marginBottom: 24,
-  },
-  textInput: {
-    width: "70%",
-    borderWidth: 1,
-    padding: 8,
-    marginRight: 8,
-    borderColor: "#ccc",
-  },
+
   goalsContainer: {
     flex: 5,
     color: "red", // cascading 되지 않음!
-  },
-  goalItem: {
-    margin: 8,
-    padding: 8,
-    borderRadius: 6,
-    backgroundColor: "#5e0acc",
-  },
-  goalText: {
-    color: "white",
   },
 });
