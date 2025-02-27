@@ -1,4 +1,13 @@
-import { Image, StyleSheet, Platform, View, Text, Button } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  Platform,
+  View,
+  Text,
+  Button,
+  ScrollView,
+  FlatList,
+} from "react-native";
 //-- react-native
 // DOM 요소를 가지고 있지 않아서, HTML 요소 지원하지 않음
 
@@ -21,18 +30,26 @@ export default function HomeScreen() {
   });
 
   const [enteredGoalText, setEnteredGoalText] = useState("");
-  const [courseGoals, setCourseGoals] = useState<string[]>([]);
+  const [courseGoals, setCourseGoals] = useState<
+    { text: string; id: string }[]
+  >([]);
 
   function goalInputHandler(eneteredText: string) {
     setEnteredGoalText(eneteredText);
   }
 
   function addGoalHandler() {
-    setCourseGoals((currentCourseGoals: string[]) => [
+    //* FlatList 일 경우
+    setCourseGoals((currentCourseGoals) => [
       ...currentCourseGoals,
-      enteredGoalText,
+      { text: enteredGoalText, id: Math.random().toString() },
     ]);
-    setEnteredGoalText("");
+
+    //* ScrollView 일 경우
+    // setCourseGoals((currentCourseGoals: string[]) => [
+    //   ...currentCourseGoals,
+    //   enteredGoalText,
+    // ]);
   }
 
   return (
@@ -47,11 +64,32 @@ export default function HomeScreen() {
       </View>
 
       <View style={styles.goalsContainer}>
-        {courseGoals.map((goal) => (
-          <Text key={goal} style={dynamicStyles.description}>
-            {goal}
-          </Text>
-        ))}
+        <FlatList
+          data={courseGoals} // data : 데이터 전달
+          renderItem={(itemData) => {
+            // renderItem: 각 항목을 어떻게 렌더링할지 정의
+            return (
+              <View style={styles.goalItem}>
+                <Text style={styles.goalText}>{itemData.item.text}</Text>
+              </View>
+            );
+          }}
+          keyExtractor={(item, index) => {
+            return item.id;
+          }}
+        />
+
+        {/* ScrollView는 전체 UI가 렌더링될 때마다 안에 있는 항목을 전부 렌더링함 */}
+        {/* <ScrollView>
+          {courseGoals.map((goal) => (
+            <Text
+              id={goal}
+              style={[dynamicStyles.description, styles.goalItem]}
+            >
+              {goal}
+            </Text>
+          ))}
+        </ScrollView> */}
       </View>
     </View>
 
@@ -94,5 +132,15 @@ const styles = StyleSheet.create({
   },
   goalsContainer: {
     flex: 5,
+    color: "red", // cascading 되지 않음!
+  },
+  goalItem: {
+    margin: 8,
+    padding: 8,
+    borderRadius: 6,
+    backgroundColor: "#5e0acc",
+  },
+  goalText: {
+    color: "white",
   },
 });
