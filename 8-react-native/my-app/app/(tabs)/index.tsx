@@ -9,28 +9,50 @@ import { ThemedView } from "@/components/ThemedView";
 import { TextInput } from "react-native-gesture-handler";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { useState } from "react";
 
 export default function HomeScreen() {
   const colorScheme = useColorScheme();
   const dynamicStyles = StyleSheet.create({
     description: {
       fontSize: 16,
-      color: colorScheme === "dark" ? "#fff" : "#000",
+      color: colorScheme === "dark" ? "#eee" : "#000",
     },
   });
+
+  const [enteredGoalText, setEnteredGoalText] = useState("");
+  const [courseGoals, setCourseGoals] = useState<string[]>([]);
+
+  function goalInputHandler(eneteredText: string) {
+    setEnteredGoalText(eneteredText);
+  }
+
+  function addGoalHandler() {
+    setCourseGoals((currentCourseGoals: string[]) => [
+      ...currentCourseGoals,
+      enteredGoalText,
+    ]);
+    setEnteredGoalText("");
+  }
 
   return (
     <View style={styles.appContainer}>
       <View style={styles.inputContainer}>
-        <TextInput style={styles.textInput} placeholder="Your course goal!" />
-        <Button title="Add Goal" />
+        <TextInput
+          style={[styles.textInput, dynamicStyles.description]}
+          placeholder="Your course goal!"
+          onChangeText={goalInputHandler}
+        />
+        <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
 
       <View style={styles.goalsContainer}>
-        <Text style={dynamicStyles.description}>Life of Goal..?</Text>
+        {courseGoals.map((goal) => (
+          <Text key={goal} style={dynamicStyles.description}>
+            {goal}
+          </Text>
+        ))}
       </View>
-      {/* <Image source={}/> */}
-      {/* <Button title="Tap me!" /> */}
     </View>
 
     // <ParallaxScrollView
