@@ -15,35 +15,31 @@ import {
 // import { ThemedView } from "@/components/ThemedView";
 // import { TextInput } from "react-native-gesture-handler";
 
-import { useColorScheme } from "@/hooks/useColorScheme";
+// import { useColorScheme } from "@/hooks/useColorScheme";
 import { useState } from "react";
 import GoalItem from "@/components/GoalItem";
 import GoalInput from "@/components/GoalInput";
 
 export default function HomeScreen() {
-  const colorScheme = useColorScheme();
-  const dynamicStyles = StyleSheet.create({
-    textColor: {
-      fontSize: 16,
-      color: colorScheme === "dark" ? "#eee" : "#000",
-      backgroundColor: colorScheme === "dark" ? "#000" : "#eee",
-    },
-  });
+  //* Dark mode
+  // const colorScheme = useColorScheme();
+  // const dynamicStyles = StyleSheet.create({
+  //   textColor: {
+  //     fontSize: 16,
+  //     color: colorScheme === "dark" ? "#eee" : "#000",
+  //     backgroundColor: colorScheme === "dark" ? "#000" : "#eee",
+  //   },
+  // });
 
   const [modalIsVisible, setModalIsVisible] = useState<boolean>(false);
   const [courseGoals, setCourseGoals] = useState<
     { text: string; id: string }[]
   >([]);
 
-  //_ Open the modal
+  //_ Open and close the modal
   function modalHandler() {
     setModalIsVisible(!modalIsVisible);
   }
-
-  // //_ Close the modal
-  // function endAddGoalHandler() {
-  //   setModalIsVisible(false);
-  // }
 
   //_ 추가
   function addGoalHandler(enteredGoalText: string) {
@@ -74,13 +70,12 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.appContainer}>
-      <Button title="Add New Goal" color="#5e0acc" onPress={modalHandler} />
+      <Button title="Add New Goal" color="#9d5bf4" onPress={modalHandler} />
 
       {modalIsVisible && (
         <GoalInput
           visible={modalIsVisible}
           onAddGoal={addGoalHandler}
-          dynamicStyles={dynamicStyles}
           modalHandler={modalHandler}
         />
       )}
@@ -138,6 +133,7 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     flex: 1,
     paddingHorizontal: 16,
+    backgroundColor: "#1e085a",
   },
 
   goalsContainer: {
