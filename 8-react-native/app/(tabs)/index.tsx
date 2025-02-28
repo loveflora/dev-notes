@@ -26,12 +26,24 @@ export default function HomeScreen() {
     textColor: {
       fontSize: 16,
       color: colorScheme === "dark" ? "#eee" : "#000",
+      backgroundColor: colorScheme === "dark" ? "#000" : "#eee",
     },
   });
 
+  const [modalIsVisible, setModalIsVisible] = useState<boolean>(false);
   const [courseGoals, setCourseGoals] = useState<
     { text: string; id: string }[]
   >([]);
+
+  //_ Open the modal
+  function modalHandler() {
+    setModalIsVisible(!modalIsVisible);
+  }
+
+  // //_ Close the modal
+  // function endAddGoalHandler() {
+  //   setModalIsVisible(false);
+  // }
 
   //_ 추가
   function addGoalHandler(enteredGoalText: string) {
@@ -46,16 +58,32 @@ export default function HomeScreen() {
     //   ...currentCourseGoals,
     //   enteredGoalText,
     // ]);
+
+    // close the modal
+    setModalIsVisible(false);
   }
 
   //_ 삭제
-  function deleteGoalHandler() {
-    console.log("delete");
+  function deleteGoalHandler(id: string) {
+    setCourseGoals((currentCourseGoals) => {
+      return currentCourseGoals.filter((goal) => goal.id !== id);
+      // 삭제하려는 id와 일치하는게 없다면 (!==) : true (유지)
+      // 삭제하려는 id와 일치하는게 있다면 (===) : false -> 필터링됨
+    });
   }
 
   return (
     <View style={styles.appContainer}>
-      <GoalInput onAddGoal={addGoalHandler} dynamicStyles={dynamicStyles} />
+      <Button title="Add New Goal" color="#5e0acc" onPress={modalHandler} />
+
+      {modalIsVisible && (
+        <GoalInput
+          visible={modalIsVisible}
+          onAddGoal={addGoalHandler}
+          dynamicStyles={dynamicStyles}
+          modalHandler={modalHandler}
+        />
+      )}
 
       <View style={styles.goalsContainer}>
         <FlatList
@@ -65,6 +93,7 @@ export default function HomeScreen() {
             return (
               <GoalItem
                 text={itemData.item.text}
+                id={itemData.item.id}
                 onDeleteItem={deleteGoalHandler}
               />
             );
