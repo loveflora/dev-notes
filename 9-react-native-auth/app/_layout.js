@@ -8,6 +8,7 @@ import WelcomeScreen from "../screens/WelcomeScreen";
 
 const Stack = createNativeStackNavigator();
 
+// 1. 인증되지 않은(비로그인) 유저 Navigation
 function AuthStack() {
   return (
     <Stack.Navigator
@@ -19,10 +20,12 @@ function AuthStack() {
     >
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Signup" component={SignupScreen} />
+      {/* 참고: AuthContent.js 에서 navigation.navigate("Signup"); */}
     </Stack.Navigator>
   );
 }
 
+// 2. 인증된(로그인) 유저만 접근할 수 있는 Navigation
 function AuthenticatedStack() {
   return (
     <Stack.Navigator

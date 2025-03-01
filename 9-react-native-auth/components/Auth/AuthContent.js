@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Alert, StyleSheet, View } from "react-native";
 import { Colors } from "../../constants/style";
+import { useNavigation } from "@react-navigation/native";
 
 import FlatButton from "../ui/FlatButton";
 import AuthForm from "./AuthForm";
 // import { Colors } from "../../constants/styles";
 
 function AuthContent({ isLogin, onAuthenticate }) {
+  const navigation = useNavigation();
   const [credentialsInvalid, setCredentialsInvalid] = useState({
     email: false,
     password: false,
@@ -15,7 +17,15 @@ function AuthContent({ isLogin, onAuthenticate }) {
   });
 
   function switchAuthModeHandler() {
-    // Todo
+    if (isLogin) {
+      // LoginScreen.js 에서 <AuthContent isLogin />;
+      // 즉, 로그인 화면일 경우
+      navigation.navigate("Signup"); // app.js 의 <Stack> name 참고
+      // navigation.replace 로 하는 경우에는 > 이전/다음 화면으로 이동하는 화살표 없음
+      // 즉, 새 화면을 화면 stack에 추가하는게 아니라, 현재 화면을 새 화면으로 교체만
+    } else {
+      navigation.navigate("Login");
+    }
   }
 
   function submitHandler(credentials) {
@@ -34,7 +44,7 @@ function AuthContent({ isLogin, onAuthenticate }) {
       !passwordIsValid ||
       (!isLogin && (!emailsAreEqual || !passwordsAreEqual))
     ) {
-      Alert.alert("Invalid input", "Please check your entered credentials.");
+      Alert.alert("Invalid input", "Please check your entered credentials."); // 경고창
       setCredentialsInvalid({
         email: !emailIsValid,
         confirmEmail: !emailIsValid || !emailsAreEqual,
