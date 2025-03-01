@@ -1,11 +1,10 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
-
+import { Colors } from "../constants/style";
 import LoginScreen from "../screens/LoginScreen";
 import SignupScreen from "../screens/SignupScreen";
 import WelcomeScreen from "../screens/WelcomeScreen";
-import { Colors } from "./constants/styles";
 
 const Stack = createNativeStackNavigator();
 
@@ -38,20 +37,13 @@ function AuthenticatedStack() {
   );
 }
 
-function Navigation() {
-  return (
-    <NavigationContainer>
-      <AuthStack />
-    </NavigationContainer>
-  );
-}
-
 export default function App() {
   return (
     <>
       <StatusBar style="light" />
-
-      <Navigation />
+      {/* <NavigationContainer> */}
+      <AuthStack />
+      {/* </NavigationContainer> */}
     </>
   );
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Alert, StyleSheet, View } from "react-native";
+import { Colors } from "../../constants/style";
 
 import FlatButton from "../ui/FlatButton";
 import AuthForm from "./AuthForm";
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 32,
     padding: 16,
     borderRadius: 8,
-    // backgroundColor: Colors.primary800,
+    backgroundColor: Colors.primary800,
     elevation: 2,
     shadowColor: "black",
     shadowOffset: { width: 1, height: 1 },
