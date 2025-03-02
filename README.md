@@ -7,13 +7,8 @@ I freely post the records of my studies.
 
 I aim to consistently document my progress, taking one step at a time each day.
 
-</br></br>
-
-개인 개발 공부용 Repository 입니다.
-
-공부한 기록들을 자유롭게 올립니다.
 </br>
-매일 한 걸음씩, 꾸준히 기록을 쌓아 올리는 것을 지향합니다.
+
 
 ## 1. WebSockets
 
@@ -43,10 +38,12 @@ A study on the book 'Grokking Simplicity: Taming Complex Software with Functiona
 ## 6. Next.js
 
 Took a Udemy course on Next.js and learned more detailed and advanced concepts.
+</br>
 
 ## 7.Typescript
 
 Joined a TypeScript study group and built a TicTacToe game using React and TypeScript.
+</br>
 
 ## 8. Introduction to React Native
 
