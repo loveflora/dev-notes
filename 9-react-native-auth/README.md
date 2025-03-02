@@ -18,7 +18,8 @@ Multilingual support is available by clicking the flag at the top right.
 ![How Does Authentication Work?](assets/images/readme/auth.jpeg)
 <br/>
 <br/>
+<br/>
 
-Implementation Screen
+### Implementation Screen 📱
 
 <img src="assets/images/readme/login.png" width="48%" /> <img src="assets/images/readme/signup.png" width="48%" />
