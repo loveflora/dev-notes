@@ -1,10 +1,14 @@
-# 개인 개발공부용 📚
+# Personal Development Study Repository 📚
 
-개인 개발 공부용 Repository 입니다.
+This is a repository for personal development studies.
 
-공부한 기록들을 자유롭게 올립니다.
+I freely post the records of my studies.
 </br>
-매일 한 걸음씩, 꾸준히 기록을 쌓아 올리는 것을 지향합니다.
+
+I aim to consistently document my progress, taking one step at a time each day.
+
+</br>
+
 
 ## 1. WebSockets
 
@@ -16,25 +20,35 @@ Zoom Clone using NodeJS, WebRTC and WebSockets
 
 </br>
 
-## 3. Next.js 소개
+## 3. Introduction to Next.js
 
-React로 만드는 서버사이드 렌더링 프레인 워크인 Next.js와 관련한 코드를 기록합니다.
+Recording code related to Next.js, a server-side rendering framework built with React.
 
 ## 4. Next Movies
 
-Next.js 프레임워크를 활용한 영화 정보 웹사이트입니다.
-vercel를 활용하여 배포했습니다.
+A movie information website built with the Next.js framework.
+Deployed using Vercel.
 
 [Next Movies](https://nextjs-movies-loveflora.vercel.app/)
 
-## 5. 쏙쏙 들어오는 함수형 코딩
+## 5. Grokking Simplicity
 
-에릭 노먼드 저서의 쏙쏙 들어오는 함수형 코딩 책 스터디
+A study on the book 'Grokking Simplicity: Taming Complex Software with Functional Thinking' by Eric Normand.
 
 ## 6. Next.js
 
-유데미 Next.js 강의를 수강하며 보다 자세하고 심화된 내용에 대해 학습했습니다.
+Took a Udemy course on Next.js and learned more detailed and advanced concepts.
+</br></br>
 
 ## 7.Typescript
 
-Typescript 스터디에 참석하여 React와 Typescript를 활용하여 TicTacToe 게임을 만들었습니다.
+Joined a TypeScript study group and built a TicTacToe game using React and TypeScript.
+</br></br>
+
+## 8. Introduction to React Native
+
+Records of studies on core components and basic functionalities.
+
+## 9. Authentication in React Native
+This section covers the implementation of authentication in React Native, including user login, signup processes, and managing user sessions securely. <br/>
+It involves utilizing libraries like Firebase or custom backend APIs to handle user authentication and maintaining state across app sessions.
