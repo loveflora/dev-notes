@@ -1,4 +1,4 @@
-# 개인 개발공부용 📚
+# Personal Development Study Repository 📚
 
 This is a repository for personal development studies.
 
@@ -38,12 +38,12 @@ A study on the book 'Grokking Simplicity: Taming Complex Software with Functiona
 ## 6. Next.js
 
 Took a Udemy course on Next.js and learned more detailed and advanced concepts.
-</br>
+</br></br>
 
 ## 7.Typescript
 
 Joined a TypeScript study group and built a TicTacToe game using React and TypeScript.
-</br>
+</br></br>
 
 ## 8. Introduction to React Native
 
