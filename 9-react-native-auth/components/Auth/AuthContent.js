@@ -35,7 +35,7 @@ function AuthContent({ isLogin, onAuthenticate }) {
     password = password.trim();
 
     const emailIsValid = email.includes("@");
-    const passwordIsValid = password.length > 6;
+    const passwordIsValid = password.length > 6; // firebase
     const emailsAreEqual = email === confirmEmail;
     const passwordsAreEqual = password === confirmPassword;
 
@@ -53,7 +53,7 @@ function AuthContent({ isLogin, onAuthenticate }) {
       });
       return;
     }
-    onAuthenticate({ email, password });
+    onAuthenticate({ email, password }); // SignupScreen.js 로 보내줌
   }
 
   return (
