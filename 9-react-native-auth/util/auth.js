@@ -14,6 +14,4 @@ export async function createUser(email, password) {
       returnSecureToken: true,
     },
   );
-
-  console.log(response);
 }
