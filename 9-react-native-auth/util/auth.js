@@ -11,16 +11,18 @@ async function authenticate(mode, email, password) {
     returnSecureToken: true,
   });
 
-  console.log(response.data);
+  const token = response.data.idToken;
+
+  return token;
 }
 
 //_ 비동기 함수 (async, await) - promise 반환
 // promise가 성공(resolve)할 때까지, 대기(await)
 // -> 로딩 오버레이 표시
-export async function createUser(email, password) {
-  await authenticate("signUp", email, password);
+export function createUser(email, password) {
+  return authenticate("signUp", email, password);
 }
 
-export async function login(email, password) {
-  await authenticate("signInWithPassword", email, password);
+export function login(email, password) {
+  return authenticate("signInWithPassword", email, password);
 }
