@@ -1,7 +1,10 @@
-import { NavigationContainer } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+// import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
-import { useContext } from "react";
+import AppLoading from "expo-app-loading";
+
+import { useContext, useEffect, useState } from "react";
 import { Colors } from "../constants/style";
 import LoginScreen from "../screens/LoginScreen";
 import SignupScreen from "../screens/SignupScreen";
@@ -70,11 +73,38 @@ function Navigation() {
   );
 }
 
+function Root() {
+  const [isTryingLogin, setIsTryingLogin] = useState(true);
+  const authCtx = useContext(AuthContext);
+
+  // 자동 로그인
+  useEffect(() => {
+    async function fetchToken() {
+      const storedToken = await AsyncStorage.getItem("token");
+
+      if (storedToken) {
+        // setAuthToken(storedToken);
+        authCtx.authenticate(storedToken);
+      }
+
+      setIsTryingLogin(false);
+    }
+
+    fetchToken();
+  }, []);
+
+  if (isTryingLogin) {
+    return <AppLoading />;
+  }
+
+  return <Navigation />;
+}
+
 export default function App() {
   return (
     <AuthContextProvider>
       <StatusBar style="light" />
-      <Navigation />
+      <Root />
     </AuthContextProvider>
   );
 }
