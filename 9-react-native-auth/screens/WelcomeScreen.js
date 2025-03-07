@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 import { AuthContext } from "../store/auth-context";
+import * as Notifications from "expo-notifications";
 
 function WelcomeScreen() {
   const [fetchedMessage, setFetchedMessage] = useState("");
@@ -26,10 +27,31 @@ function WelcomeScreen() {
       });
   }, []);
 
+  function scheduledNotificationHandler() {
+    // local notification 예약
+    // async: promise return
+    Notifications.scheduleNotificationAsync({
+      content: {
+        title: "My first local notificaetion",
+        body: "This is the body of the notification",
+        data: {
+          userName: "Max",
+        },
+      },
+      trigger: {
+        seconds: 5,
+      },
+    });
+  }
+
   return (
     <View style={styles.rootContainer}>
       <Text style={styles.title}>Welcome!</Text>
       <Text>You authenticated successfully!</Text>
+      <Button
+        title="Scheduled Notification"
+        onPress={scheduledNotificationHandler}
+      />
       <Text>{fetchedMessage}</Text>
     </View>
   );
