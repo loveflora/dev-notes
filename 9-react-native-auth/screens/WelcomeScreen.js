@@ -4,6 +4,29 @@ import { Button, StyleSheet, Text, View } from "react-native";
 import { AuthContext } from "../store/auth-context";
 import * as Notifications from "expo-notifications";
 
+//_ 해당하는 알림이 들어왔을 때 어떻게 처리할지
+// app 가동될 때 한 번만 실행 (컴포넌트 밖)
+Notifications.setNotificationHandler({
+  handleNotification: async () => {
+    return {
+      shouldPlaySound: false,
+      shouldSetBadge: false,
+      shouldShowAlert: true,
+    };
+  },
+});
+
+// 알림 권한 요청 (앱이 실행될 때)
+useEffect(() => {
+  async function requestPermissions() {
+    const { status } = await Notifications.requestPermissionsAsync();
+    if (status !== "granted") {
+      alert("알림 권한을 허용해 주세요!");
+    }
+  }
+  requestPermissions();
+}, []);
+
 function WelcomeScreen() {
   const [fetchedMessage, setFetchedMessage] = useState("");
 
@@ -21,25 +44,25 @@ function WelcomeScreen() {
       .then((response) => {
         // console.log("✅ 응답:", response);
         setFetchedMessage(response.data);
-      })
-      .catch((error) => {
-        console.error("❌ 에러:", error);
       });
+    // .catch((error) => {
+    //   console.error("❌ 에러:", error);
+    // });
   }, []);
 
-  function scheduledNotificationHandler() {
-    // local notification 예약
-    // async: promise return
+  //_ local notification 예약
+  // async: promise return
+  function scheduleNotificationHandler() {
     Notifications.scheduleNotificationAsync({
       content: {
-        title: "My first local notificaetion",
-        body: "This is the body of the notification",
+        title: "Enter the title",
+        body: "Enter the body",
         data: {
-          userName: "Max",
+          userName: "data...",
         },
       },
       trigger: {
-        seconds: 5,
+        seconds: 3,
       },
     });
   }
@@ -50,7 +73,7 @@ function WelcomeScreen() {
       <Text>You authenticated successfully!</Text>
       <Button
         title="Scheduled Notification"
-        onPress={scheduledNotificationHandler}
+        onPress={scheduleNotificationHandler}
       />
       <Text>{fetchedMessage}</Text>
     </View>
