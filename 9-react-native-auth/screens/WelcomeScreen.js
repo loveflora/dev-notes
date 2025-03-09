@@ -17,15 +17,15 @@ Notifications.setNotificationHandler({
 });
 
 // 알림 권한 요청 (앱이 실행될 때)
-useEffect(() => {
-  async function requestPermissions() {
-    const { status } = await Notifications.requestPermissionsAsync();
-    if (status !== "granted") {
-      alert("알림 권한을 허용해 주세요!");
-    }
-  }
-  requestPermissions();
-}, []);
+// useEffect(() => {
+//   async function requestPermissions() {
+//     const { status } = await Notifications.requestPermissionsAsync();
+//     if (status !== "granted") {
+//       alert("알림 권한을 허용해 주세요!");
+//     }
+//   }
+//   requestPermissions();
+// }, []);
 
 function WelcomeScreen() {
   const [fetchedMessage, setFetchedMessage] = useState("");
@@ -50,6 +50,31 @@ function WelcomeScreen() {
     // });
   }, []);
 
+  //_ 받은 알림을 어떻게 처리할지
+  useEffect(() => {
+    const subscription1 = Notifications.addNotificationReceivedListener(
+      (notification) => {
+        console.log(notification);
+
+        const userName = notification.request.content.data.userName;
+        console.log(userName);
+      },
+    );
+
+    // 사용자 상호작용
+    const subscription2 = Notifications.addNotificationResponseReceivedListener(
+      (response) => {
+        console.log(response);
+      },
+    );
+
+    // clean-up
+    return () => {
+      subscription1.remove();
+      subscription2.remove();
+    };
+  }, []);
+
   //_ local notification 예약
   // async: promise return
   function scheduleNotificationHandler() {
@@ -57,8 +82,9 @@ function WelcomeScreen() {
       content: {
         title: "Enter the title",
         body: "Enter the body",
+        // 표면적으로 보이진 않지만, 알림을 받을 때 추출할 수 있는 코드 -> addNotificationReceivedListener
         data: {
-          userName: "data...",
+          userName: "Sarah",
         },
       },
       trigger: {
