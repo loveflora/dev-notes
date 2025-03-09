@@ -61,15 +61,6 @@ function WelcomeScreen() {
         return;
       }
 
-      // 🚨 Expo Go에서는 push token을 지원하지 않음. 확인 후 중지.
-      // if (!Constants.isDevice) {
-      //   console.log("❌ Must use physical device for Push Notifications");
-      //   // console.log("📌 Constants 전체:", Constants);
-      //   console.log("📌 Constants.isDevice:", Constants.isDevice);
-      //   // console.log("📌 Constants.expoConfig:", Constants.expoConfig);
-      //   return;
-      // }
-
       //* 권한 확인 및 요청 이후
       //_ Push Token 가져오기
       // getExpoPushTokenAsync() : 기기에서 PUSH token 가져올 때 호출하는 메서드
