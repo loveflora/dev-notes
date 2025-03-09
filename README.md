@@ -9,7 +9,6 @@ I aim to consistently document my progress, taking one step at a time each day.
 
 </br>
 
-
 ## 1. WebSockets
 
 Zoom Clone using NodeJS, WebRTC and WebSockets
@@ -40,7 +39,7 @@ A study on the book 'Grokking Simplicity: Taming Complex Software with Functiona
 Took a Udemy course on Next.js and learned more detailed and advanced concepts.
 </br></br>
 
-## 7.Typescript
+## 7. Typescript
 
 Joined a TypeScript study group and built a TicTacToe game using React and TypeScript.
 </br></br>
@@ -50,5 +49,10 @@ Joined a TypeScript study group and built a TicTacToe game using React and TypeS
 Records of studies on core components and basic functionalities.
 
 ## 9. Authentication in React Native
+
 This section covers the implementation of authentication in React Native, including user login, signup processes, and managing user sessions securely. <br/>
 It involves utilizing libraries like Firebase or custom backend APIs to handle user authentication and maintaining state across app sessions.
+
+## 10. Location, camera, DB in React Native
+
+This project allows users to add a list of favorite locations. <br/>It integrates with Google Maps and Apple Maps for navigation, and manages camera permissions for capturing photos.<br/> It also features image preview functionality and stores the data in an SQLite database for persistence.
