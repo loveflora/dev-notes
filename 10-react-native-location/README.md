@@ -8,7 +8,7 @@ I documented my study records.<br/>
 You can check it by clicking the link below.<br/>
 Multilingual support is available by clicking the flag at the top right.
 
-[Blog Post: Location](https://oooooooooooo.tistory.com/entry/React-Native-11-1-%EB%A1%9C%EC%BB%AC-%EC%95%8C%EB%A6%BCLocal-Notifications)
+[Blog Post: Location](https://oooooooooooo.tistory.com/entry/React-Native-12-1-%EB%84%A4%EB%B9%84%EA%B2%8C%EC%9D%B4%EC%85%98-%EC%B4%88%EA%B8%B0-%EC%84%B8%ED%8C%85)
 
 <br/>
 
