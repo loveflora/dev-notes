@@ -1,5 +1,4 @@
-import { View } from "react-native-web";
-import { Image, Pressable, Text } from "react-native/types";
+import { Image, Pressable, Text, View, StyleSheet } from "react-native";
 
 export default function PlaceItem({ place, onSelect }) {
   return (

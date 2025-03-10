@@ -47,11 +47,17 @@ Joined a TypeScript study group and built a TicTacToe game using React and TypeS
 ## 8. Introduction to React Native
 
 Records of studies on core components and basic functionalities.
+<br/>
 
-## 9. Authentication in React Native
+## 9. Authentication & Notifications in React Native
 
 This section covers the implementation of authentication in React Native, including user login, signup processes, and managing user sessions securely. <br/>
 It involves utilizing libraries like Firebase or custom backend APIs to handle user authentication and maintaining state across app sessions.
+<br/><br/>
+Additionally, it includes implementing both local notifications and push notifications.<br/>
+• Local notifications allow users to receive reminders and alerts within the app, even without an internet connection.<br/>
+• Push notifications enable real-time updates and messages sent from a server to users’ devices, enhancing user engagement.
+<br/>
 
 ## 10. Location, camera, DB in React Native
 
