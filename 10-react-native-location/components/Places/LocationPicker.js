@@ -8,9 +8,13 @@ import {
 } from "expo-location";
 import { useState } from "react";
 import { getMapPreview } from "@/util/location";
+import { useNavigation } from "@react-navigation/native";
 
 export default function LocationPicker() {
+  // 위치 정보 저장
   const [pickedLocation, setPickedLocation] = useState();
+
+  const navigation = useNavigation();
 
   // 권한 확인
   const [locationPermissionInformation, requestPermission] =
@@ -51,7 +55,9 @@ export default function LocationPicker() {
     });
   }
 
-  function pickOnMapHandler() {}
+  function pickOnMapHandler() {
+    navigation.navigate("Map");
+  }
 
   let locationPreview = <Text>No location picked yet.</Text>;
 
