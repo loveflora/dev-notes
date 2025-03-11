@@ -6,19 +6,46 @@ import {
   PermissionStatus,
   useForegroundPermissions,
 } from "expo-location";
-import { useState } from "react";
+import { useState, useLayoutEffect, useCallback, useEffect } from "react";
 import { getMapPreview } from "@/util/location";
-import { useNavigation } from "@react-navigation/native";
+import {
+  useIsFocused,
+  useNavigation,
+  useRoute,
+} from "@react-navigation/native";
 
-export default function LocationPicker() {
+export default function LocationPicker({ onPickLocation }) {
   // 위치 정보 저장
   const [pickedLocation, setPickedLocation] = useState();
+  // useIsFocused() : 현재 화면이 focus되면 true, 아니라면 false
+  const isFocused = useIsFocused();
+  // 해당 컴포넌트가 메인 화면이라면 -> true, 아니라면 -> false
+  // '새로운 장소 추가' 화면으로 이동) isFocused 값은 true
+  // '지도' 화면으로 이동) isFocused 값은 false
 
   const navigation = useNavigation();
+  const route = useRoute();
 
   // 권한 확인
   const [locationPermissionInformation, requestPermission] =
     useForegroundPermissions();
+
+  useEffect(() => {
+    // console.log("route.params", route.params);
+    if (isFocused && route.params) {
+      const mapPickedLocation = {
+        lat: route.params.pickedLat,
+        lng: route.params.pickedLng,
+      };
+      setPickedLocation(mapPickedLocation);
+    }
+  }, [route, isFocused]);
+
+  useEffect(() => {
+    onPickLocation(pickedLocation);
+  }, [pickedLocation, onPickLocation]);
+  // onPickLocation 프로퍼티의 함수가 불필요하게 바뀌지 말아야 함
+  // 불필요하게 바뀌면 useEffect가 계속 실행됨
 
   async function verifyPermissions() {
     if (
