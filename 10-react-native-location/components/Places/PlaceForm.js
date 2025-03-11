@@ -4,8 +4,9 @@ import { Colors } from "react-native/Libraries/NewAppScreen";
 import ImagePicker from "../../components/Places/ImagePicker";
 import LocationPicker from "../../components/Places/LocationPicker";
 import Button from "../ui/Button";
+import Place from "@/models/place";
 
-export default function PlaceForm() {
+export default function PlaceForm({ onCreatePlace }) {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [selectedImage, setSelectedImage] = useState();
   const [pickedLocation, setPickedLocation] = useState();
@@ -24,9 +25,11 @@ export default function PlaceForm() {
   }, []);
 
   function savePlaceHandler() {
-    console.log(enteredTitle);
-    console.log(selectedImage);
-    console.log(pickedLocation);
+    // console.log(enteredTitle);
+    // console.log(selectedImage);
+    // console.log(pickedLocation);
+    const placeData = new Place(enteredTitle, selectedImage, pickedLocation);
+    onCreatePlace(placeData);
   }
 
   return (

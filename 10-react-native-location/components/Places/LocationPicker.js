@@ -7,7 +7,7 @@ import {
   useForegroundPermissions,
 } from "expo-location";
 import { useState, useLayoutEffect, useCallback, useEffect } from "react";
-import { getMapPreview } from "@/util/location";
+import { getAddress, getMapPreview } from "@/util/location";
 import {
   useIsFocused,
   useNavigation,
@@ -42,7 +42,17 @@ export default function LocationPicker({ onPickLocation }) {
   }, [route, isFocused]);
 
   useEffect(() => {
-    onPickLocation(pickedLocation);
+    async function handleLocation() {
+      if (pickedLocation) {
+        const address = await getAddress(
+          pickedLocation.lat,
+          pickedLocation.lng,
+        );
+        onPickLocation({ ...pickedLocation, address: address });
+      }
+    }
+
+    handleLocation();
   }, [pickedLocation, onPickLocation]);
   // onPickLocation 프로퍼티의 함수가 불필요하게 바뀌지 말아야 함
   // 불필요하게 바뀌면 useEffect가 계속 실행됨
