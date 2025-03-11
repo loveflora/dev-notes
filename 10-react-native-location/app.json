@@ -32,6 +32,12 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "cameraPermission": "카메라 설정이 필요한 이유..."
+        }
       ]
     ],
     "experiments": {
