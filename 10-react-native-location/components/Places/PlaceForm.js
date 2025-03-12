@@ -4,7 +4,7 @@ import { Colors } from "react-native/Libraries/NewAppScreen";
 import ImagePicker from "../../components/Places/ImagePicker";
 import LocationPicker from "../../components/Places/LocationPicker";
 import Button from "../ui/Button";
-import Place from "@/models/place";
+import { Place } from "@/models/place";
 
 export default function PlaceForm({ onCreatePlace }) {
   const [enteredTitle, setEnteredTitle] = useState("");
@@ -25,10 +25,13 @@ export default function PlaceForm({ onCreatePlace }) {
   }, []);
 
   function savePlaceHandler() {
-    // console.log(enteredTitle);
-    // console.log(selectedImage);
-    // console.log(pickedLocation);
+    console.log("???????");
+    console.log(enteredTitle);
+    console.log(selectedImage);
+    console.log(pickedLocation);
     const placeData = new Place(enteredTitle, selectedImage, pickedLocation);
+
+    console.log("placeData>>>>", placeData);
     onCreatePlace(placeData);
   }
 
@@ -48,6 +51,7 @@ export default function PlaceForm({ onCreatePlace }) {
     </ScrollView>
   );
 }
+
 const styles = StyleSheet.create({
   form: {
     flex: 1,

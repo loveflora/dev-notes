@@ -4,21 +4,30 @@ import { Alert, StyleSheet, Text, View } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 
 // Map 컴포넌트는 Screen으로 등록된 화면 컴포넌트이므로, navigation 프로퍼티 사용 가능
-export default function Map({ navigation }) {
-  const [selectedLocation, setSelectedLocation] = useState();
+export default function Map({ navigation, route }) {
+  const initialLocation = route.params && {
+    lat: route.params.initialLat,
+    lng: route.params.initialLng,
+  };
+
+  const [selectedLocation, setSelectedLocation] = useState(initialLocation);
 
   const region = {
-    latitude: 37.38,
-    longitude: -122.43,
+    latitude: initialLocation ? initialLocation.lat : 37.78,
+    longitude: initialLocation ? initialLocation.lng : -122.43,
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   };
 
   // 위치 위도 & 경도 정보 가져오기
   function selectLocationHandler(event) {
+    if (initialLocation) {
+      return;
+    }
     const lat = event.nativeEvent.coordinate.latitude;
     const lng = event.nativeEvent.coordinate.longitude;
-    setSelectedLocation({ lat, lng });
+
+    setSelectedLocation({ lat: lat, lng: lng });
   }
 
   // useCallback() : 컴포넌트 내에 정의한 함수가 불필요하게 재생산되지 않도록 함
@@ -37,6 +46,10 @@ export default function Map({ navigation }) {
 
   // useLayoutEffect: 최초로 렌더링될 때 바로 코드 실행
   useLayoutEffect(() => {
+    if (initialLocation) {
+      return;
+    }
+
     navigation.setOptions({
       headerRight: ({ tintColor }) => (
         <IconButton
@@ -47,7 +60,7 @@ export default function Map({ navigation }) {
         />
       ),
     });
-  }, [navigation, savePickedLocationHandler]); // 의존성 추가 (불필요하게 함수 재생산안되게 함)
+  }, [navigation, savePickedLocationHandler, initialLocation]); // 의존성 추가 (불필요하게 함수 재생산안되게 함)
 
   return (
     <MapView

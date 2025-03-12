@@ -38,7 +38,8 @@
         {
           "cameraPermission": "카메라 설정이 필요한 이유..."
         }
-      ]
+      ],
+      "expo-sqlite"
     ],
     "experiments": {
       "typedRoutes": true
