@@ -62,3 +62,7 @@ Additionally, it includes implementing both local notifications and push notific
 ## 10. Location, camera, DB in React Native
 
 This project allows users to add a list of favorite locations. <br/>It integrates with Google Maps and Apple Maps for navigation, and manages camera permissions for capturing photos.<br/> It also features image preview functionality and stores the data in an SQLite database for persistence.
+
+## 11. Responsive User Interface for Cross-Platform Compatibility
+
+I implemented a user interface that is compatible across different platforms and device sizes, using the Number Guessing Game as a foundation. The design ensures seamless adaptation to various screen sizes, providing an optimal user experience whether on mobile, tablet, or desktop. By considering platform-specific characteristics and responsiveness, the interface adjusts efficiently to fit any device or screen resolution.
